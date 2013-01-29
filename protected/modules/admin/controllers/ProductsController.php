@@ -156,4 +156,31 @@ class ProductsController extends Controller
 			Yii::app()->end();
 		}
 	}
+    
+    public function actionCsvExport() 
+    {
+        header('Content-Type: text/csv; charset=utf-8');
+        header('Content-Disposition: attachment; filename=data.csv');
+
+        // create a file pointer connected to the output stream
+        $output = fopen('php://output', 'w');
+
+        // output the column headings
+        fputcsv($output, array('Id', 'Name', 'Code', 'Description'));
+        
+        $products = Products::model()->findAll();
+        foreach ($products as $product) {
+            fputcsv($output, array($product->id, $product->name, $product->code, $product->description));
+        }
+
+        exit();
+    }
+    
+    public function actionCsvImport() {
+        if(isset($_POST)) 
+        {
+            
+        }
+        $this->render('import');
+    }
 }

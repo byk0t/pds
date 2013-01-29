@@ -9,8 +9,8 @@ $this->breadcrumbs=array(
 $this->menu=array(
 	array('label'=>'Создать новый продукт', 'url'=>array('create')),
 	array('label'=>'Управление продуктами', 'url'=>array('admin')),
-	array('label'=>'Импорт из CSV', 'url'=>array('admin')),
-	array('label'=>'Экспорт в CSV', 'url'=>array('admin')),
+	array('label'=>'Импорт из CSV', 'url'=>array('products/csvImport/')),
+	array('label'=>'Экспорт в CSV', 'url'=>array('products/csvExport/')),
 );
 ?>
 
