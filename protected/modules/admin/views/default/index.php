@@ -2,10 +2,10 @@
 /* @var $this DefaultController */
 
 $this->breadcrumbs=array(
-	$this->module->id,
+	'Статистика',
 );
 ?>
-<h1><?php echo $this->uniqueId . '/' . $this->action->id; ?></h1>
+<h1>Общая информация</h1>
 
 <?php $this->widget(
   'application.extensions.OpenFlashChart2Widget.OpenFlashChart2Widget',

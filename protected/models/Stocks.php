@@ -11,6 +11,10 @@
  */
 class Stocks extends CActiveRecord
 {
+    const TYPE_PRODUCTION = 1;
+    const TYPE_PRODUCER_STOCK = 2;
+    const TYPE_BUYER_STOCK = 3;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -91,4 +95,20 @@ class Stocks extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+    
+    public function  getType()
+    {
+        foreach ($this->getTypes() as $k => $v) {
+            if($this->type == $k) return $v;
+        }
+    }
+    
+    public function getTypes() 
+    {
+        return array (
+            self::TYPE_PRODUCTION  => 'Производство',
+            self::TYPE_PRODUCER_STOCK => 'Склад производителя',
+            self::TYPE_BUYER_STOCK => 'Склад покупателя',
+        );
+    }
 }

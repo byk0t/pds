@@ -48,7 +48,11 @@ $('.search-form form').submit(function(){
 		'id',
 		'name',
 		'address',
-		'type',
+        array(
+            'name' => 'type', 
+            'value' => '$data->getType()',
+            'filter' =>  Stocks::model()->getTypes()
+        ),
 		array(
 			'class'=>'CButtonColumn',
 		),

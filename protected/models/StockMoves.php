@@ -102,4 +102,13 @@ class StockMoves extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+    
+    public function getStockMovesStat() 
+    {
+        $sql = "select date, sum(quantity) quantity from stock_moves a 
+                    left join stock_move_lines  b ON b.move_id = a.id  
+                group by date order by date";
+        return Yii::app()->db->createCommand($sql)->queryAll();
+    }
+
 }

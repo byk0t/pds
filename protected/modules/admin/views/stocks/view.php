@@ -24,6 +24,6 @@ $this->menu=array(
 		'id',
 		'name',
 		'address',
-		'type',
+        array('name' => 'type', 'value' => $model->getType()),
 	),
 )); ?>
