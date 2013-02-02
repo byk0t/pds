@@ -177,9 +177,28 @@ class ProductsController extends Controller
     }
     
     public function actionCsvImport() {
-        if(isset($_POST)) 
+        
+        if(isset($_FILES['csv'])) 
         {
-            
+            $fname = $_FILES['csv']['tmp_name'];
+            if(($fp = fopen($fname, 'r')) !== FALSE) 
+            {
+                $row = 0;
+                while (($data = fgetcsv($fp, 100)) !== FALSE)
+                {
+                    if($row > 0)
+                    {
+                        $product = new Products();
+                        $product->name = $data[1];
+                        $product->code = $data[2];
+                        $product->description = $data[3];
+                        $product->save();
+                    }
+                    $row++;
+                } 
+                fclose($fp);
+            }
+            $this->redirect('/admin/products/');
         }
         $this->render('import');
     }
